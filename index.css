@@ -1,0 +1,58 @@
+body {
+    background-color: orangered;
+    font-family: 'Reggae One';
+    margin: 0;
+    color: white;
+}
+
+h1 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 60px;
+}
+
+.card {
+    list-style: none;
+    background-color: black;
+    color: white;
+    padding: 40px;
+    /* to disploay centered items easier than justify concent */
+    text-align: center;
+}
+
+.card:hover {
+    animation: bounce 0.5s linear;
+}
+
+@keyframes bounce {
+    20% {
+        transform: translateY(-15px);
+    }
+    40% {
+        transform: translateY(0px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+    80% {
+        transform: translateY(0px);
+    }
+}
+
+.card-title {
+    font-size: 25px;
+}
+
+.card-image {}
+
+#pokedex {
+    padding-inline-start: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 20px;
+}
+
+.container {
+    padding: 40px;
+    margin: 0 auto;
+}
