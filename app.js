@@ -18,6 +18,7 @@ const pokecount = () => {
     }
     // console.log(pokecount());
 var apicalls = [];
+var apicallreddit = [];
 const pokedata = () => {
     for (let i = 1; i <= 150; i++) {
         var url = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -31,8 +32,29 @@ const pokedata = () => {
             picture: data.sprites['front_default'],
             type: data.types.map((type) => type.type.name).join(', ')
         }));
+        // var pokenames = [];
+        // pokenames.push(pokemon.map(result => `${result.name}`));
+        // console.log(pokenames);
+        // console.log(pokemon.map(result => `${result.name}`));
+        // for (let i = 1; i <= 150; i++) {
+        //     const reddit_url = `https://www.reddit.com/r/pokemon/search.json?t=year&sort=relevance&q=${pokenames[i]}`;
+        //     apicallreddit.push(fetch(reddit_url).then((response) => response.json()));
+        // }
+        RedditInfo(pokemon);
         RenderIndex(pokemon);
     });
+
+    const RedditInfo = (pokemon) => {
+        var pokenames = [];
+        pokenames.push(pokemon.map(result => `${result.name}`));
+        console.log(pokenames);
+        for (let i = 1; i <= 150; i++) {
+            const reddit_url = `https://www.reddit.com/r/pokemon/search.json?t=year&sort=relevance&q=${pokenames[i]}`;
+            apicallreddit.push(fetch(reddit_url).then((response) => response.json()));
+        }
+
+    }
+
     // .then(data => {
     //     console.log(data);
     //     const pokemon = {
@@ -55,7 +77,7 @@ const pokedata = () => {
 };
 
 const RenderIndex = (pokemon) => {
-    console.log(pokemon);
+    // console.log(pokemon);
 
     const cards = pokemon.map(result => `
     <li class="card">
