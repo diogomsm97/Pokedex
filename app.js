@@ -82,7 +82,7 @@ const RenderIndex = (pokemon) => {
     const cards = pokemon.map(result => `
     <li class="card">
     <img class="card-pic" src="${result.picture}"/>
-    <h1 class="card-title">${result.id}.${result.name}</h1>
+    <h1 class="card-title">#${result.id} ${result.name}</h1>
     <p class="card-type">Type: ${result.type}</p>
     </li>
     `).join('');
