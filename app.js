@@ -45,14 +45,15 @@ const pokedata = () => {
         //     const reddit_url = `https://www.reddit.com/r/pokemon/search.json?t=year&sort=relevance&q=${pokenames[i]}`;
         //     apicallreddit.push(fetch(reddit_url).then((response) => response.json()));
         // }
-        RedditInfo(pokemon);
+        //RedditInfo(pokemon);
         RenderIndex(pokemon);
+        testmodal();
         LoadModal(pokemon);
     });
 
     const RedditInfo = (pokemon) => {
-        var pokenames = [];
-        pokenames.push(pokemon.map(result => `${result.name}`));
+
+        const pokenames = pokemon.map(result => `${result.name}`);
         console.log(pokenames);
         for (let i = 1; i <= 150; i++) {
             const reddit_url = `https://www.reddit.com/r/pokemon/search.json?t=year&sort=relevance&q=${pokenames[i]}`;
@@ -92,17 +93,35 @@ const RenderIndex = (pokemon) => {
     <p class="card-type">Type: ${result.type}</p>
     </li>
     `).join('');
+
     pokedexelements.innerHTML = cards;
-    document.querySelector('#show_modal').addEventListener('click', toggleModal);
-    document.querySelector('.modal_close').addEventListener('click', toggleModal);
+    testmodal();
+    // const openModal = document.querySelectorAll('#show_modal');
+    // openModal.addEventListener('click', toggleModal);
+    // const closemodal = document.querySelectorAll('.modal_close');
+    // closemodal.addEventListener('click', toggleModal);
+
 };
+const testmodal = () => {
+    var lists = document.getElementsByClassName('card');
+    var btnclose = document.getElementsByClassName('modal_close');
+    var numlists = lists.length;
+    // var btnclose = btnclose.length;
+    console.log(numlists);
+    // console.log(btnclose);
+    for (var i = 0; i <= numlists; i++) {
+        lists[i].addEventListener('click', toggleModal, false);
+        // lists[i].addEventListener('click', toggleModal);
+    }
+}
+
 const toggleModal = () => {
     document.querySelector('.modal').classList.toggle('modal_hidden');
 };
 
 const LoadModal = (pokemon) => {
     const modal = pokemon.map(result => `
-    <div  id="show_modal" class"modal">
+    <div id="show_modal" class="">
     <img class="card-pic " src="${result.shinypic}"/>
     <h1 class="card-title">${result.name}</h1>
     <p class="card-type">Type: ${result.type}</p>

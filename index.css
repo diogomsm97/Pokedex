@@ -19,6 +19,16 @@ h1 {
     width: 40%;
     height: auto;
     margin-bottom: 40px;
+    animation: fadein 4s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .card {
@@ -60,6 +70,7 @@ h1 {
     width: 5%;
     height: auto;
     margin-bottom: 10px;
+    animation: fadein 4s;
 }
 
 .card-title {
