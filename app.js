@@ -1,7 +1,8 @@
 const pokedexelements = document.getElementById("pokedex");
+const PokeInfo = document.getElementById("Modal_pokeinfo");
 
-//fecthing data from Api 
-// `` ecma6 notation for template literals 
+//fecthing data from Api
+// `` ecma6 notation for template literals
 const pokecount = () => {
         var Pokecount = 0;
         var Pokecounturl = `https://pokeapi.co/api/v2/pokemon-species/`;
@@ -24,14 +25,18 @@ const pokedata = () => {
         var url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         apicalls.push(fetch(url).then((response) => response.json()));
     }
-    //promise that returns an array of objects 
+    //promise that returns an array of objects
     Promise.all(apicalls).then(results => {
         const pokemon = results.map(data => ({
             id: data.id,
             name: data.name,
             picture: data.sprites['front_default'],
+            pictureback: data.sprites['back_default'],
+            shinypic: data.sprites['front_shiny'],
+            shinypicback: data.sprites['back_shiny'],
             type: data.types.map((type) => type.type.name).join(', ')
         }));
+
         // var pokenames = [];
         // pokenames.push(pokemon.map(result => `${result.name}`));
         // console.log(pokenames);
@@ -42,6 +47,7 @@ const pokedata = () => {
         // }
         RedditInfo(pokemon);
         RenderIndex(pokemon);
+        LoadModal(pokemon);
     });
 
     const RedditInfo = (pokemon) => {
@@ -67,7 +73,7 @@ const pokedata = () => {
     //     // pokemon['name'] = data.name;
     //     // pokemon['picture'] = data.sprites['front_default'];
     //     // data.types.forEach((type) => {
-    //     //     //data from array of array tem que se concatenar 
+    //     //     //data from array of array tem que se concatenar
     //     //     pokemon['type'] = pokemon['type'] + ',' + type.type.name
     //     // });
     //     // console.log(data);
@@ -80,14 +86,29 @@ const RenderIndex = (pokemon) => {
     // console.log(pokemon);
 
     const cards = pokemon.map(result => `
-    <li class="card">
-    <img class="card-pic" src="${result.picture}"/>
+    <li  id="show_modal"class="card">
+    <img class="card-pic " src="${result.picture}"/>
     <h1 class="card-title">#${result.id} ${result.name}</h1>
     <p class="card-type">Type: ${result.type}</p>
     </li>
     `).join('');
     pokedexelements.innerHTML = cards;
+    document.querySelector('#show_modal').addEventListener('click', toggleModal);
+    document.querySelector('.modal_close').addEventListener('click', toggleModal);
+};
+const toggleModal = () => {
+    document.querySelector('.modal').classList.toggle('modal_hidden');
 };
 
+const LoadModal = (pokemon) => {
+    const modal = pokemon.map(result => `
+    <div  id="show_modal" class"modal">
+    <img class="card-pic " src="${result.shinypic}"/>
+    <h1 class="card-title">${result.name}</h1>
+    <p class="card-type">Type: ${result.type}</p>
+    </div>
+    `).join('');
+    PokeInfo.innerHTML = modal;
 
+};
 pokedata();
