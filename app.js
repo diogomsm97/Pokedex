@@ -104,14 +104,14 @@ const RenderIndex = (pokemon) => {
 };
 const testmodal = () => {
     var lists = document.getElementsByClassName('card');
-    var btnclose = document.getElementsByClassName('modal_close');
+    
+    
     var numlists = lists.length;
-    // var btnclose = btnclose.length;
+   
     console.log(numlists);
-    // console.log(btnclose);
     for (var i = 0; i <= numlists; i++) {
-        lists[i].addEventListener('click', toggleModal, false);
-        // lists[i].addEventListener('click', toggleModal);
+        lists[i].addEventListener('click', toggleModal);
+        
     }
 }
 

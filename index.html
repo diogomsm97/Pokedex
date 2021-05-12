@@ -9,7 +9,8 @@
     <title>Index</title>
     <link rel="stylesheet" href="index.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" >
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 </head>
 
 <body>
@@ -23,14 +24,42 @@
     </div>
 
 </body>
+<!--  bootstrap modal (alternative test)  -->
+<!-- <div class="modal fade " id="Modal_pokeinfo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal_content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div> -->
+<!--  -->
 <div class="modal modal_hidden">
     <div id="Modal_pokeinfo" class="modal_content">
-        <div class="modal_close">
-            <span>X</span>
+        <div class="modal_close" data-dismiss="modal" aria-hidden="true">
+            <span> X</span>
         </div>
         <p>Hello </p>
     </div>
 </div>
-<script src="app.js"></script>
+<script src="app.js">
+
+$(function () {
+   $('.modal_close').modal('hide');
+});
+
+
+</script>
 
 </html>
